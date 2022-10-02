@@ -1,13 +1,15 @@
 package baseball.utils;
 
+import baseball.Constants.UserInputRange;
+
 import java.util.HashSet;
 import java.util.Set;
 
+import static baseball.Constants.ErrorMessage.*;
+import static baseball.Constants.UserInputRange.*;
+
 public class UserInputBaseBallNumberValidator extends UserInputValidator{
-    protected static final String WRONG_UNIQUE_MESSAGE = "input value contains duplicated value";
-    private static final int INPUT_BASEBALL_DIGIT = 3;
-    private static final int INPUT_BASEBALL_MIN_NUM = 1;
-    private static final int INPUT_BASEBALL_MAX_NUM = 9;
+
 
     public UserInputBaseBallNumberValidator(String userInputString){
         super(userInputString);
@@ -21,7 +23,7 @@ public class UserInputBaseBallNumberValidator extends UserInputValidator{
     }
 
     private void isValidLength(){
-        if(userInputString.length() != INPUT_BASEBALL_DIGIT){
+        if(userInputString.length() != INPUT_BASEBALL_MAX_DIGIT){
             throw new IllegalArgumentException(WRONG_LENGTH_MESSAGE);
         }
     }
