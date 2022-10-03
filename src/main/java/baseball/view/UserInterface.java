@@ -15,4 +15,22 @@ public class UserInterface {
         return Console.readLine();
     }
 
+    public static void printRoundResult(boolean isNothing, boolean isWinning, int ballCnt, int strikeCnt){
+        if(isNothing){
+            System.out.println(UserInterfaceMessage.ROUND_RESULT_NOTHING);
+            return;
+        }
+        if(isWinning){
+            System.out.println(strikeCnt + UserInterfaceMessage.ROUND_RESULT_STRIKE);
+            System.out.println(UserInterfaceMessage.ROUND_RESULT_WINNING);
+            return;
+        }
+        if(ballCnt > 0){
+            System.out.print(ballCnt + UserInterfaceMessage.ROUND_RESULT_BALL + " ");
+        }
+        if(strikeCnt > 0){
+            System.out.print(strikeCnt + UserInterfaceMessage.ROUND_RESULT_STRIKE);
+        }
+        System.out.println();
+    }
 }

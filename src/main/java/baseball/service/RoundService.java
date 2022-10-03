@@ -1,5 +1,6 @@
 package baseball.service;
 
+import baseball.Constants.UserInputRange;
 import baseball.domain.Round;
 import baseball.view.UserInterface;
 import baseball.utils.UserInputBaseBallNumberValidator;
@@ -39,7 +40,7 @@ public class RoundService {
     private void setStrikeCntAndBallCnt(){
         int strikeCnt = 0;
         int ballCnt = 0;
-        for(int i=0; i<userInputNumberList.size(); i++){
+        for(int i = 0; i< userInputNumberList.size(); i++){
             if(isStrike(i)){
                 strikeCnt++;
                 continue;
@@ -61,21 +62,7 @@ public class RoundService {
     }
 
     private void printRoundResult(){
-        if(isNothing()){
-            System.out.println("낫싱");
-            return;
-        }
-        if(isWinning()){
-            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
-            return;
-        }
-        if(round.getBallCnt() > 0){
-            System.out.print(round.getBallCnt()+"볼");
-        }
-        if(round.getStrikeCnt() > 0){
-            System.out.print(round.getStrikeCnt()+"스트라이크");
-        }
-        System.out.println();
+        UserInterface.printRoundResult(isNothing(), isWinning(), round.getBallCnt(), round.getStrikeCnt());
     }
 
     private boolean isNothing() {
