@@ -1,5 +1,6 @@
 package baseball.service;
 
+import baseball.Constants.UserInputRange;
 import baseball.domain.BaseBallGame;
 import baseball.Constants.GameStatus;
 import baseball.view.UserInterface;
@@ -7,7 +8,10 @@ import baseball.utils.UserInputGameStatusNumberValidator;
 import baseball.utils.UserInputValidator;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class BaseBallGameService {
 
@@ -18,7 +22,7 @@ public class BaseBallGameService {
             RoundService roundService = new RoundService(baseBallGame.getTargetNumberList());
             roundService.startRound();
             if(roundService.isWinning()){
-                break;
+                baseBallGame.setGameStatus(GameStatus.END);
             }
         } while(GameStatus.START == baseBallGame.getGameStatus());
 
@@ -28,7 +32,11 @@ public class BaseBallGameService {
     }
 
     private List<Integer> generateTargetNumber(){
-        return Randoms.pickUniqueNumbersInRange(1, 9, 3);
+        Set<Integer> targetNumberSet = new LinkedHashSet<>();
+        while(targetNumberSet.size() != UserInputRange.INPUT_BASEBALL_MAX_DIGIT){
+            targetNumberSet.add(Randoms.pickNumberInRange(UserInputRange.INPUT_BASEBALL_MIN_NUM, UserInputRange.INPUT_BASEBALL_MAX_NUM));
+        }
+        return new ArrayList<>(targetNumberSet);
     }
 
     private GameStatus isStartNewGame(){

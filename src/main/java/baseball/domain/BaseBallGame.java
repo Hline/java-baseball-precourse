@@ -7,7 +7,7 @@ import java.util.List;
 public class BaseBallGame {
     private final List<Integer> targetNumberList;
 
-    private final GameStatus gameStatus;
+    private GameStatus gameStatus;
 
     public BaseBallGame(List<Integer> targetNumberList){
         this.targetNumberList = targetNumberList;
@@ -22,4 +22,7 @@ public class BaseBallGame {
         return gameStatus;
     }
 
+    public void setGameStatus(GameStatus gameStatus) {
+        this.gameStatus = gameStatus;
+    }
 }
